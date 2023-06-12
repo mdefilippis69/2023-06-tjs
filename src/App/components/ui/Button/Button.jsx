@@ -1,8 +1,14 @@
 import React from 'react'
 import style from './Button.module.css'
+import PropTypes from 'prop-types'
 
 const Button=(props)=>{
-    return <button className={style.Button}>Valider</button>;
+    console.log(props)
+    return <button className={style.Button}>{props.children}</button>;
 }
 
+Button.propTypes = {
+    children: PropTypes.any.isRequired,
+    type: PropTypes.oneOf(['button', 'reset', 'submit']).isRequired
+}
 export default Button
