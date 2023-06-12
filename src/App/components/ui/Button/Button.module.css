@@ -20,8 +20,13 @@
     cursor: pointer;
 }
 
-.Button:active {
+/*.Button:active {
     transform: translateY(4px);
+}*/
+
+.clicked {
+    box-shadow: 5px 5px 25px grey !important;
+    background-color: white !important;
 }
 
 .Button img{
