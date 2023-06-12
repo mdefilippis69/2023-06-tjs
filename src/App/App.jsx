@@ -5,7 +5,9 @@ import Button from './components/ui/Button/Button';
 function App() {
   return (
     <div className="App">
-      <Button><img src='/img/valid.png'/></Button>
+      <Button onClick={(childParam)=> {
+        console.log('validé', childParam)
+      }}><img src='/img/valid.png'/></Button>
       <Button>Annuler</Button>
     </div>
   );
