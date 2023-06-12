@@ -5,10 +5,10 @@ import Button from './components/ui/Button/Button';
 function App() {
   return (
     <div className="App">
-      <Button onClick={(childParam)=> {
+      <Button style={{border: 'none'}} onClick={(childParam)=> {
         console.log('validé', childParam)
       }}><img src='/img/valid.png'/></Button>
-      <Button>Annuler</Button>
+      <Button bgColor="white">Annuler</Button>
     </div>
   );
 }
