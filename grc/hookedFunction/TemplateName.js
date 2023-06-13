@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import styles from './TemplateName.module.css';
+import style from './TemplateName.module.css';
 export const initialStateTemplateName={}
 
 const TemplateName = (props) => {
@@ -14,7 +14,7 @@ const TemplateName = (props) => {
     }
   }, [])
   return (
-  <div className={styles.TemplateName} data-testid="TemplateName">
+  <div className={style.TemplateName} data-testid="TemplateName">
     TemplateName Component
   </div>
 )
