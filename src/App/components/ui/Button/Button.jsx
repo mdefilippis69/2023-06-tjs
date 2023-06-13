@@ -9,7 +9,7 @@ const Button=(props)=>{
             setTimeout(()=>{
                 setIsClicked(false)
             }, 4000)
-        }  
+        }
         
     }, [isClicked])
     /*console.log(props)*/
