@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import style from './MemeForm.module.css';
 import { emptyMeme } from 'orsys-tjs-meme'
 import Button from '../../ui/Button/Button';
+import { useSelector } from 'react-redux';
 const MemeForm = (props) => {
   
   return (
