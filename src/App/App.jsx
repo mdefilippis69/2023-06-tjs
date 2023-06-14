@@ -9,6 +9,7 @@ import { useDispatch} from 'react-redux'
 import { MemeSvgViewer } from './components/ui/MemeSvgViewer/MemeSvgViewer'
 import { Route, Routes, useParams, useLocation } from 'react-router-dom'
 import Editor from './pages/editor'
+import MemeThumbnail, { MemeThumbnailStoreConnected } from './components/ui/MemeThumbnail/MemeThumbnail'
 
 const App = () => {
   
@@ -24,7 +25,7 @@ const App = () => {
         <NavBar/>
         <Routes>
           <Route path='/' element={<div><h1>Hello a tous</h1></div>}/>
-          <Route path='/thumbnail' element={<div>thumbnail</div>} />
+          <Route path='/thumbnail' element={<MemeThumbnailStoreConnected/>} />
           <Route path='/meme' element={<Editor/>}/>
           <Route path='/meme/:id' element={ <Editor/>}/>
 
