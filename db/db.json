@@ -185,21 +185,6 @@
       "frameSizeX": 0,
       "frameSizeY": 101,
       "id": 8
-    },
-    {
-      "titre": "",
-      "text": "",
-      "x": 0,
-      "y": 20,
-      "fontWeight": "500",
-      "fontSize": 20,
-      "underline": false,
-      "italic": true,
-      "imageId": -1,
-      "color": "#000000",
-      "frameSizeX": 0,
-      "frameSizeY": 0,
-      "id": 9
     }
   ]
 }

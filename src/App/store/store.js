@@ -1,6 +1,7 @@
 import { configureStore, combineReducers } from '@reduxjs/toolkit'
-import currentReducer from './currentSlice'
+import currentReducer, {postMeme} from './currentSlice'
 import ressourcesReducer, {fetchAllResources} from './ressourcesSlice'
+import {emptyMeme} from 'orsys-tjs-meme'
 
 const store = configureStore({
     reducer: combineReducers({
@@ -11,4 +12,5 @@ const store = configureStore({
 })
 
 store.dispatch(fetchAllResources())
+//store.dispatch(postMeme(emptyMeme))
 export default store
