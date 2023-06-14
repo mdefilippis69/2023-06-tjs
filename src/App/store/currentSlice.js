@@ -9,9 +9,11 @@ const currentSlice = createSlice({
   initialState,
   reducers: {
     update:(state, action)=>{
+        delete state.id
         Object.assign(state, action.payload)
     },
     clear:(state, action)=>{
+        delete state.id
         Object.assign(state, emptyMeme)
     }
   },
