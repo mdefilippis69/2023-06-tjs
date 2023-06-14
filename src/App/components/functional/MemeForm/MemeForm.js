@@ -3,22 +3,21 @@ import PropTypes from 'prop-types';
 import style from './MemeForm.module.css';
 import { emptyMeme } from 'orsys-tjs-meme'
 import Button from '../../ui/Button/Button';
-import { useSelector, useDispatch} from 'react-redux'
-import { update, postMeme } from '../../../store/currentSlice';
+import { saveCurrent, update } from '../../../store/currentSlice';
+import {useSelector, useDispatch} from 'react-redux'
+// import { connect } from 'react-redux';
 const MemeForm = (props) => {
-  
   return (
     <div className={style.MemeForm} data-testid="MemeForm">
-      <form 
-      onSubmit={(evt)=>{
+      <form onSubmit={(evt) => {
         evt.preventDefault();
-        props.onMemeSave(props.current)
-      }} 
-      onReset={(evt)=> {
-        props.onMemeChange(emptyMeme)
+
+        props.onSaveMeme(props.current)
+      }} onReset={(evt) => {
+        props.onMemeChange(emptyMeme);
       }}>
         <label htmlFor="titre">
-        <h1>Titre</h1></label>
+          <h1>Titre</h1></label>
         <br />
         <input name="titre" id="titre"
           value={props.current.titre}
@@ -30,13 +29,12 @@ const MemeForm = (props) => {
           <h2>Image</h2>
         </label>
         <br />
-        <select name="image" id="image" 
-          value={props.current.imageId}
-          onChange={(evt)=>{
-            props.onMemeChange({...props.current, imageId:Number(evt.target.value)})
+        <select name="image" id="image" value={props.current.imageId}
+          onChange={(evt) => {
+            props.onMemeChange({ ...props.current, imageId: Number(evt.target.value) })
           }}>
           <option value="-1">No image</option>
-          {props.images.map((e, i)=><option key={`select-image-${i}`} value={e.id}>{e.titre}</option>
+          {props.images.map((e, i) => <option key={`select-image-${i}`} value={e.id}>{e.titre}</option>
           )}
         </select>
         <hr />
@@ -94,9 +92,9 @@ const MemeForm = (props) => {
         <br />
         <input name="underline" id="underline" type="checkbox"
           checked={props.current.underline}
-          onChange={(evt) => { 
-            props.onMemeChange({ ...props.current, underline: evt.target.checked }) 
-        }} />
+          onChange={(evt) => {
+            props.onMemeChange({ ...props.current, underline: evt.target.checked })
+          }} />
         &nbsp;
         <label htmlFor="underline">
           <h2 >underline</h2>
@@ -109,16 +107,16 @@ const MemeForm = (props) => {
         &nbsp;
         <input name="italic" id="italic" type="checkbox"
           checked={props.current.italic}
-          onChange={(evt) => { 
-            props.onMemeChange({ ...props.current, italic: evt.target.checked }) 
-        }}
+          onChange={(evt) => {
+            props.onMemeChange({ ...props.current, italic: evt.target.checked })
+          }}
         />
         <hr />
+        <Button type='reset' className='error'>Annul</Button>
         <Button type='submit' className="primary">Valider</Button>
-        <Button type='reset' className="error">Reset</Button>
         <br />
       </form>
-    </div>
+    </div >
   );
 };
 
@@ -135,7 +133,7 @@ MemeForm.propTypes = {
     fontSize: PropTypes.number.isRequired,
     color: PropTypes.string.isRequired,
     underline: PropTypes.bool.isRequired,
-    italic: PropTypes.bool.isRequired
+    italic: PropTypes.bool.isRequired,
   }).isRequired
 };
 
@@ -143,19 +141,43 @@ MemeForm.defaultProps = {};
 
 export default MemeForm;
 
-export const MemeFormStoredConnected=(props)=> {
-  const storeProps=useSelector(storeState=>{
-    return {images: storeState.ressources.images, current: storeState.current}
+export const MemeFormStoredConnected = (props) => {
+  const images = useSelector(storeState => {
+    return storeState.ressources.images
   })
-  const storeDispatch = useDispatch()
-  return <MemeForm
-            {...props}
-            {...storeProps}
-            onMemeChange={(meme)=>{
-              storeDispatch(update(meme))
-            }}
-            onMemeSave={(meme)=>{
-              storeDispatch(postMeme(meme))
-            }}
-         />
+  const current=useSelector(s=>s.current)
+  const storeDispatch=useDispatch()
+  return (
+    <MemeForm
+     {...props}
+     current={current}
+     images={images}
+      onMemeChange={ (meme)=>{
+        storeDispatch(update(meme))
+      }}
+      onSaveMeme={(meme)=>{storeDispatch(saveCurrent(meme))}}
+    />)
 }
+
+/*
+export const ConnectedMemeForm = (props) => {
+  const currentMeme = useSelector(s => s)
+  const storeDispatch = useDispatch();
+  return (
+    <MemeForm {...props} current={currentMeme} onMemeChange={(meme) => {
+      storeDispatch({ type: 'current/update', payload: meme })
+    }} />
+  )
+}
+*/
+/*
+function mapStateToProps(storeState,ownProps){
+    return {...props,current:storeState} 
+}
+function mapDispatchToProps(storeDispatch){
+  return {onMemeChange:(meme)=>{
+    storeDispatch({type:'current/update', payload:meme})
+  }}
+}
+export const ConnectedMemeForm=connect(mapStateToProps,mapDispatchToProps)(MemeForm)
+*/

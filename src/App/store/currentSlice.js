@@ -26,7 +26,7 @@ const currentSlice = createSlice({
 
 export const { update, clear } = currentSlice.actions
 
-export const postMeme = createAsyncThunk('current/save',
+export const saveCurrent = createAsyncThunk('current/save',
     async (meme)=>{
         const url=`${REST_ADR}${ressourcesURL.memes}${undefined!==meme.id?'/'+meme.id: ''}`;
         const promiseMeme = await fetch(url, {

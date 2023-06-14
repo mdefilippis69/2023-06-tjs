@@ -187,16 +187,16 @@
       "id": 8
     },
     {
-      "titre": "",
-      "text": "",
+      "titre": "chienLOL",
+      "text": "CE GROS CHIEN",
       "x": 0,
-      "y": 20,
+      "y": 100,
       "fontWeight": "500",
-      "fontSize": 20,
+      "fontSize": 80,
       "underline": false,
-      "italic": true,
-      "imageId": -1,
-      "color": "#000000",
+      "italic": false,
+      "imageId": 6,
+      "color": "#ffffff",
       "frameSizeX": 0,
       "frameSizeY": 0,
       "id": 9
