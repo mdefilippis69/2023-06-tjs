@@ -1,6 +1,6 @@
 import { configureStore, combineReducers } from '@reduxjs/toolkit'
 import currentReducer from './currentSlice'
-import ressourcesReducer from './ressourcesSlice'
+import ressourcesReducer, {fetchAllResources} from './ressourcesSlice'
 
 const store = configureStore({
     reducer: combineReducers({
@@ -10,4 +10,5 @@ const store = configureStore({
     devTools: true
 })
 
+store.dispatch(fetchAllResources())
 export default store
