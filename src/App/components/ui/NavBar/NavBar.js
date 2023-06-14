@@ -6,13 +6,15 @@ import '../../../../../node_modules/bootstrap/dist/css/bootstrap.css'
 // attention pour le js pensez a yarn add jquery et import './..../dist/jquery.js'
 // import '../../../../../node_modules/bootstrap/dist/js/bootstrap.js'
 import { Navbar, Container, Nav } from 'react-bootstrap'
-import {LinkContainer} from 'react-router-bootstrap'
+import { LinkContainer } from 'react-router-bootstrap'
 const NavBar = (props) => {
   return (
     <div className={style.NavBar} data-testid="NavBar">
       <Navbar bg="dark" variant="dark">
         <Container>
-          <Navbar.Brand href="#home">Home</Navbar.Brand>
+          <LinkContainer to="/">
+            <Navbar.Brand href="/">Home</Navbar.Brand>
+          </LinkContainer>
           <Nav className="me-auto">
             {/* <Link to="/thumbnail">Thumbnail</Link>
             <Link to="/editor">new</Link>

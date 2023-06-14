@@ -7,8 +7,8 @@ import Footer from './components/ui/Footer/Footer'
 import { MemeFormStoredConnected } from './components/functional/MemeForm/MemeForm'
 import { useDispatch} from 'react-redux'
 import { MemeSvgViewer } from './components/ui/MemeSvgViewer/MemeSvgViewer'
-
-
+import { Route, Routes, useParams, useLocation } from 'react-router-dom'
+import Editor from './pages/editor'
 
 const App = () => {
   
@@ -22,10 +22,13 @@ const App = () => {
       <FlexV3Grow>
         <Header/>
         <NavBar/>
-        <FlexH1Grow>
-        <MemeSvgViewer basePath=''/>
-          <MemeFormStoredConnected/>
-        </FlexH1Grow>
+        <Routes>
+          <Route path='/' element={<div><h1>Hello a tous</h1></div>}/>
+          <Route path='/thumbnail' element={<div>thumbnail</div>} />
+          <Route path='/meme' element={<Editor/>}/>
+          <Route path='/meme/:id' element={ <Editor/>}/>
+
+        </Routes>
         <Footer/>
       </FlexV3Grow>
     </div>
