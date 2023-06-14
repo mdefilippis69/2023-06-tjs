@@ -4,21 +4,18 @@ import Header from './components/ui/Header/Header'
 import NavBar from './components/ui/NavBar/NavBar'
 import FlexH1Grow from './components/layout/FlexH1Grow/FlexH1Grow'
 import Footer from './components/ui/Footer/Footer'
-import { MemeSVGViewer, emptyMeme } from 'orsys-tjs-meme'
-import MemeForm from './components/functional/MemeForm/MemeForm'
-import datas from './db.json'
+import { MemeFormStoredConnected } from './components/functional/MemeForm/MemeForm'
+import { useDispatch} from 'react-redux'
+import { MemeSvgViewer } from './components/ui/MemeSvgViewer/MemeSvgViewer'
 
-const appInitialState = {
-  images: [],
-  memes: [],
-  current: emptyMeme
-}
+
 
 const App = () => {
-  const [state, setstate] = useState(appInitialState)
+  
   //chargement de datas post 1er montage (fetch si besoin) 
   useEffect(() => {
-    setstate({...state, ...datas});
+    //const d = useDispatch();
+    //d.fetchAllRessources()
   }, [])
   return (
     <div className="App">
@@ -26,14 +23,8 @@ const App = () => {
         <Header/>
         <NavBar/>
         <FlexH1Grow>
-          <MemeSVGViewer meme={state.current}
-             image={state.images.find(img => {
-              return img.id===state.current.imageId
-             })}
-             basePath=''/>
-          <MemeForm images={datas.images} current={state.current} onMemeChange={(meme)=>{
-            setstate({...state,current:meme})
-          }}></MemeForm>
+        <MemeSvgViewer basePath=''/>
+          <MemeFormStoredConnected/>
         </FlexH1Grow>
         <Footer/>
       </FlexV3Grow>
